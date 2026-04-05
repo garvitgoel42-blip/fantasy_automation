@@ -8,10 +8,15 @@ from google.oauth2.service_account import Credentials
 
 def get_client():
     creds_dict = json.loads(os.environ["GOOGLE_CREDENTIALS"])
-    scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+
+    scopes = [
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive"
+    ]
 
     creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
     client = gspread.authorize(creds)
+
     return client
 
 gc = get_client()
